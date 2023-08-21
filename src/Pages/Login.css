@@ -1,0 +1,42 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 9cm;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 13cm;
+    height: 7cm;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#email, #password {
+    padding: 0.3cm 7cm 0.3cm 0.2cm;
+    font-size: 15px;
+}
+
+#submit {
+    background-color: rgb(255, 255, 255);
+    color: #5c9210;;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+}
+
+#register {
+    background-color: rgb(255, 255, 255);
+    color: #944317;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+}

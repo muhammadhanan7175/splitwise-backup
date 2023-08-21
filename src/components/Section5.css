@@ -1,0 +1,49 @@
+.contained{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.list-container{
+    display: flex;
+    flex-direction: row;
+}
+.listbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.listitem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.listitem img{
+    width: 35%;
+}
+.headings{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.heading1{
+    width: 50%;
+    display: flex;
+    flex-direction: row;   
+}
+.heading1 img{
+    width: 15%;
+}
+.heading2{
+    width: 50%;
+    display: flex;
+    flex-direction: row;   
+}
+.heading2 img{
+    width: 15%;
+}
+h2{
+    color:black
+}
+h6{
+    color:black
+}

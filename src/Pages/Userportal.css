@@ -1,0 +1,49 @@
+.buttoncontainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 45%;
+    margin-right: 45%;
+}
+/* Userportal.css */
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-top: 20px;
+  }
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-field {
+    margin-bottom: 10px;
+  }
+  
+  .user-email-container {
+    margin-top: 20px;
+  }
+  
+  .add-user-email {
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-button {
+    margin-left: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  

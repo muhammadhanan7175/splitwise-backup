@@ -1,0 +1,29 @@
+.containers{
+    display: flex;
+    flex-direction: row;
+    background-color: blueviolet;
+    background-image: url(../assets/svgs/FinalBackground.png);
+}
+.texts{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9%;
+  
+}
+.texts p{
+    text-align: center;
+    color: white;
+}
+.images{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+.images img{
+    width: 45%;
+    margin-top: 20%;
+}
