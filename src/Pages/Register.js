@@ -4,7 +4,7 @@ import { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth, db , usersCollection } from "../components/Firebase-config";
-import { doc, collection, setDoc } from "firebase/firestore";
+
 
 
 function Register() {

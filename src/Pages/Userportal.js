@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addExpense,
-  updateToPay,
-  updatePaid,
-} from "../Redux/ExpenseDetailSlice";
+import {  addExpense, updateToPay,updatePaid,} from "../Redux/ExpenseDetailSlice";
 import { db, auth } from "../components/Firebase-config";
 import "./Userportal.css";
 import { useNavigate } from "react-router-dom";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
+import { setCurrentUser } from "../Redux/CurrentUserSlice";
+import {Button,TextField,  Dialog,DialogTitle, DialogContent,  DialogActions,} from "@mui/material";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Userportal() {
   const dispatch = useDispatch();
+  const [user] = useAuthState(auth);
   const expenseDetails = useSelector((state) => state.expenseDetails);
-  const currentUserEmail = auth.user ? auth.user.currentEmail : "";
+  const currentUserEmail = user.email
+  console.log(currentUserEmail)
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [description, setDescription] = useState("");
@@ -35,6 +28,16 @@ function Userportal() {
   const [showLoggerInput, setShowLoggerInput] = useState(false);
 
   const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.currentUser.value);
+
+  useEffect(() => {
+
+    const loggedInUser = auth.user ? auth.user.currentEmail : "";
+    
+    if (loggedInUser) {
+      dispatch(setCurrentUser(loggedInUser));
+    }
+  }, []);
 
   const [loggerState, setLoggerState] = useState({
     loggerEmail: currentUserEmail,
@@ -135,7 +138,7 @@ function Userportal() {
     const loggerToPay = (parseFloat(price) / totalObjects).toFixed(2);
 
     setLoggerState({
-      loggerEmail: currentUserEmail,
+      loggerEmail: currentUser,
       loggerToPay: loggerToPay,
       loggerPaid: price,
     });
@@ -155,11 +158,12 @@ function Userportal() {
       // Handle the distribution of expenses randomly
     }
     navigate("/History");
+    // console.log(expenseDetails)
 
     if (price && description && date && expenseDetails?.length > 0) {
       // Add a new document in collection "cities"
       db.collection("admin")
-        .doc("hro@gmail.com")
+        .doc()
         .set({
           date: date,
           description: description,
