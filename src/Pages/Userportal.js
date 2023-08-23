@@ -37,6 +37,7 @@ function Userportal() {
   const [selectedEmailIndex, setSelectedEmailIndex] = useState(-1);
   const [amountToPay, setAmountToPay] = useState(0);
   const [showLoggerInput, setShowLoggerInput] = useState(false);
+  const [split, setSplit] = useState(false);
 
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.currentUser.value);
@@ -91,6 +92,7 @@ function Userportal() {
   }, [expenseDetails]);
 
   const handleSplitClick = (index) => {
+    setSplit(true);
     setSelectedEmailIndex(index);
     setSplitPopupOpen(true);
   };
@@ -110,6 +112,7 @@ function Userportal() {
   };
 
   const handlePayClick = (index) => {
+    setSplit(true);
     setSelectedEmailIndex(index);
     setPayPopupOpen(true);
   };
@@ -131,15 +134,12 @@ function Userportal() {
   const distributeExpenseEqually = () => {
     const totalObjects = expenseDetails?.length + 1;
     const pricePerPerson = parseFloat(price) / totalObjects;
-  
 
     const updatedExpenseDetails = expenseDetails?.map((expense) => ({
       ...expense,
       toPay: pricePerPerson.toFixed(2),
       paid: "0",
     }));
-
-
 
     updatedExpenseDetails.forEach((expense) => {
       handleUpdateToPay(expense.userId, expense.toPay);
@@ -162,35 +162,28 @@ function Userportal() {
         loggerPaid: price,
       },
     };
-
   };
-
-
 
   const publishData = () => {
     let state = [];
-    if (expenseDetails.every((expense) => expense.toPay && expense.paid)) {
-      
-    } else {
-      // Handle the distribution of expenses randomly
+    if (!split) {
+      state = distributeExpenseEqually();
     }
-    state = distributeExpenseEqually();
-
 
     if (price && description && date && expenseDetails?.length > 0) {
       // Add a new document in collection "cities"
 
+      if (split) loggerState.loggerEmail = user?.email;
+      else state.loggerState.loggerEmail = user?.email;
 
-      
-      state.loggerState.loggerEmail = currentUserEmail;
       db.collection("admin")
         .doc()
         .set({
           date: date,
           description: description,
           price: parseFloat(price),
-          adminDetails: state.loggerState,
-          guestDetails: state.updatedExpenseDetails,
+          adminDetails: split ? loggerState : state.loggerState,
+          guestDetails: split ? expenseDetails : state.updatedExpenseDetails,
         })
         .then(() => {
           console.log("Document successfully written!");
@@ -201,8 +194,6 @@ function Userportal() {
         });
     }
   };
-
-
 
   return (
     <div>
