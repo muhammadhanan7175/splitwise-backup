@@ -131,7 +131,7 @@ function Userportal() {
   const distributeExpenseEqually = () => {
     const totalObjects = expenseDetails?.length + 1;
     const pricePerPerson = parseFloat(price) / totalObjects;
-    // console.log("price", pricePerPerson)
+  
 
     const updatedExpenseDetails = expenseDetails?.map((expense) => ({
       ...expense,
@@ -139,7 +139,7 @@ function Userportal() {
       paid: "0",
     }));
 
-    console.log("updated", updatedExpenseDetails);
+
 
     updatedExpenseDetails.forEach((expense) => {
       handleUpdateToPay(expense.userId, expense.toPay);
@@ -162,33 +162,26 @@ function Userportal() {
         loggerPaid: price,
       },
     };
-    // console.log("updated", updatedExpenseDetails)
-    // console.log("updated", loggerState)
+
   };
 
-  console.log("expense", expenseDetails);
-  console.log("adminstatus", loggerState);
+
 
   const publishData = () => {
     let state = [];
     if (expenseDetails.every((expense) => expense.toPay && expense.paid)) {
-      // updatedExpenseDetails = distributeExpenseEqually();
-      console.log("distributed Expense");
+      
     } else {
       // Handle the distribution of expenses randomly
     }
     state = distributeExpenseEqually();
 
-    console.log("submit expense", state);
-
-    // console.log(expenseDetails)
 
     if (price && description && date && expenseDetails?.length > 0) {
       // Add a new document in collection "cities"
-      console.log("last data");
-      console.log(currentUser);
 
-      console.log("submit expense", expenseDetails);
+
+      
       state.loggerState.loggerEmail = currentUserEmail;
       db.collection("admin")
         .doc()
@@ -201,8 +194,6 @@ function Userportal() {
         })
         .then(() => {
           console.log("Document successfully written!");
-          console.log("return", state.updatedExpenseDetails);
-          console.log(loggerState);
           navigate("/History");
         })
         .catch((error) => {
@@ -211,7 +202,7 @@ function Userportal() {
     }
   };
 
-  console.log(loggerState);
+
 
   return (
     <div>
