@@ -24,7 +24,7 @@ function Userportal() {
   const [user] = useAuthState(auth);
   const expenseDetails = useSelector((state) => state.expenseDetails);
   const currentUserEmail = user?.email;
-  console.log(currentUserEmail);
+  
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [description, setDescription] = useState("");

@@ -1,74 +1,71 @@
 import React from "react";
 import './Register.css';
 import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth, db , usersCollection } from "../components/Firebase-config";
-
-
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../components/Firebase-config";
 
 function Register() {
     const direction = useNavigate();
     const [registerPassword, setRegisterPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPasssword] = useState("");
-    // const emailCollection = collection(db,"mail")
+
+    const isEmailValid = (email) => {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return emailPattern.test(email);
+    };
+
     const register = async () => {
+        if (!isEmailValid(email)) {
+            alert("Improper email entered");
+            return;
+        }
+
         try {
-            const user = await createUserWithEmailAndPassword(auth, email, registerPassword).then(async (userCred)=>{
-                    console.log(userCred);
-                
-                });
-                
-            const usersRef = db.collection("users").doc(email)
+            const user = await createUserWithEmailAndPassword(auth, email, registerPassword);
+            const usersRef = db.collection("users").doc(email);
             const res = await usersRef.set({
                 email: email
-            })
-            console.log('resss', res)
-        
-        } 
-        
-        catch (error) {
-            console.log('errrr', error);
-        } 
-
-       direction("/Userportal")
-    }
-    const logout = async () => {
-        await signOut(auth)
-    }
-    const login = async () => {
-        try {
-            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword).then((userCred)=>{
-                console.log(userCred);
-                
             });
-            
+            console.log('resss', res);
         } catch (error) {
-            console.log(error.message);
+            console.log('errrr', error);
         }
-    }
 
-    // ... (other functions)
+        direction("/Userportal");
+    }
 
     return (
         <>
             <div className="formContainer">
                 <form className="form">
-                    <input type="email" placeholder="E-mail Address" id="email" name="email"
-                        value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password" placeholder="Password" id="password" name="password"
-                        value={registerPassword} onChange={(event) => setRegisterPassword(event.target.value)} />
-                    {/* <button type="button" onClick={""}>Login</button> */}
-                    <button type="button" onClick={register}>Register</button>
+                    <input
+                        type="email"
+                        placeholder="E-mail Address"
+                        id="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        id="password"
+                        name="password"
+                        value={registerPassword}
+                        onChange={(event) => setRegisterPassword(event.target.value)}
+                    />
+                    <button type="button" onClick={register}>
+                        Register
+                    </button>
                 </form>
             </div>
         </>
-    )
+    );
 }
 
 export default Register;
+
 
 
 // <input type="email" placeholder="E-mail Address" id="email" name="email"
