@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  addExpense, updateToPay,updatePaid,} from "../Redux/ExpenseDetailSlice";
+import {
+  addExpense,
+  updateToPay,
+  updatePaid,
+} from "../Redux/ExpenseDetailSlice";
 import { db, auth } from "../components/Firebase-config";
 import "./Userportal.css";
 import { useNavigate } from "react-router-dom";
 import { setCurrentUser } from "../Redux/CurrentUserSlice";
-import {Button,TextField,  Dialog,DialogTitle, DialogContent,  DialogActions,} from "@mui/material";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Userportal() {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const expenseDetails = useSelector((state) => state.expenseDetails);
-  const currentUserEmail = user?.email
-  console.log(currentUserEmail)
+  const currentUserEmail = user?.email;
+  console.log(currentUserEmail);
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [description, setDescription] = useState("");
@@ -31,11 +42,10 @@ function Userportal() {
   const currentUser = useSelector((state) => state.currentUser.value);
 
   useEffect(() => {
-
     const loggedInUser = auth.user ? auth.user.currentEmail : "";
-    
+
     if (loggedInUser) {
-      setLoggerState({...loggedInUser,loggerEmail:currentUserEmail})
+      setLoggerState({ ...loggedInUser, loggerEmail: currentUserEmail });
       dispatch(setCurrentUser(loggedInUser));
     }
   }, []);
@@ -129,7 +139,7 @@ function Userportal() {
       paid: "0",
     }));
 
-    console.log("updated", updatedExpenseDetails)
+    console.log("updated", updatedExpenseDetails);
 
     updatedExpenseDetails.forEach((expense) => {
       handleUpdateToPay(expense.userId, expense.toPay);
@@ -143,6 +153,15 @@ function Userportal() {
       loggerToPay: loggerToPay,
       loggerPaid: price,
     });
+
+    return {
+      updatedExpenseDetails,
+      loggerState: {
+        loggerEmail: currentUser,
+        loggerToPay: loggerToPay,
+        loggerPaid: price,
+      },
+    };
     // console.log("updated", updatedExpenseDetails)
     // console.log("updated", loggerState)
   };
@@ -151,41 +170,47 @@ function Userportal() {
   console.log("adminstatus", loggerState);
 
   const publishData = () => {
-    let updatedExpenseDetails = [];
+    let state = [];
     if (expenseDetails.every((expense) => expense.toPay && expense.paid)) {
       // updatedExpenseDetails = distributeExpenseEqually();
-      distributeExpenseEqually()
+      console.log("distributed Expense");
     } else {
       // Handle the distribution of expenses randomly
     }
-    navigate("/History");
+    state = distributeExpenseEqually();
+
+    console.log("submit expense", state);
+
     // console.log(expenseDetails)
 
-    if (price && description && date && expenseDetails?.length > 0 ) {
+    if (price && description && date && expenseDetails?.length > 0) {
       // Add a new document in collection "cities"
-      console.log('last data')
-      console.log(currentUser)
-      loggerState.loggerEmail=currentUserEmail
+      console.log("last data");
+      console.log(currentUser);
+
+      console.log("submit expense", expenseDetails);
+      state.loggerState.loggerEmail = currentUserEmail;
       db.collection("admin")
         .doc()
         .set({
           date: date,
           description: description,
           price: parseFloat(price),
-          adminDetails: loggerState,
-          guestDetails: expenseDetails,
+          adminDetails: state.loggerState,
+          guestDetails: state.updatedExpenseDetails,
         })
         .then(() => {
           console.log("Document successfully written!");
-          console.log(expenseDetails)
-          console.log(loggerState)
+          console.log("return", state.updatedExpenseDetails);
+          console.log(loggerState);
+          navigate("/History");
         })
         .catch((error) => {
           console.error("Error writing document: ", error);
         });
     }
   };
-  
+
   console.log(loggerState);
 
   return (

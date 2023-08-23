@@ -21,7 +21,7 @@ function History() {
         const fetchedCardData = adminCollection.docs
           .filter((doc) => {
             const data = doc.data();
-            return data.adminDetails.loggerEmail === user.email;
+            return data.adminDetails.loggerEmail === user?.email;
           })
           .map((doc) => {
             const data = doc.data();
@@ -81,7 +81,7 @@ function History() {
     };
 
     fetchData();
-  }, [user.email]);
+  }, [user?.email]);
 
   return (
     <>
