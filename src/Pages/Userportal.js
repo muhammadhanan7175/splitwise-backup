@@ -12,7 +12,7 @@ function Userportal() {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const expenseDetails = useSelector((state) => state.expenseDetails);
-  const currentUserEmail = user.email
+  const currentUserEmail = user?.email
   console.log(currentUserEmail)
 
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -35,6 +35,7 @@ function Userportal() {
     const loggedInUser = auth.user ? auth.user.currentEmail : "";
     
     if (loggedInUser) {
+      setLoggerState({...loggedInUser,loggerEmail:currentUserEmail})
       dispatch(setCurrentUser(loggedInUser));
     }
   }, []);
@@ -142,8 +143,8 @@ function Userportal() {
       loggerToPay: loggerToPay,
       loggerPaid: price,
     });
-    console.log("updated", updatedExpenseDetails)
-    console.log("updated", loggerState)
+    // console.log("updated", updatedExpenseDetails)
+    // console.log("updated", loggerState)
   };
 
   console.log("expense", expenseDetails);
@@ -151,7 +152,7 @@ function Userportal() {
 
   const publishData = () => {
     let updatedExpenseDetails = [];
-    if (expenseDetails.every((expense) => !expense.toPay && !expense.paid)) {
+    if (expenseDetails.every((expense) => expense.toPay && expense.paid)) {
       // updatedExpenseDetails = distributeExpenseEqually();
       distributeExpenseEqually()
     } else {
@@ -160,8 +161,11 @@ function Userportal() {
     navigate("/History");
     // console.log(expenseDetails)
 
-    if (price && description && date && expenseDetails?.length > 0) {
+    if (price && description && date && expenseDetails?.length > 0 ) {
       // Add a new document in collection "cities"
+      console.log('last data')
+      console.log(currentUser)
+      loggerState.loggerEmail=currentUserEmail
       db.collection("admin")
         .doc()
         .set({
@@ -174,6 +178,7 @@ function Userportal() {
         .then(() => {
           console.log("Document successfully written!");
           console.log(expenseDetails)
+          console.log(loggerState)
         })
         .catch((error) => {
           console.error("Error writing document: ", error);

@@ -1,0 +1,23 @@
+/* DebitCreditSection.css */
+.debit-credit-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .debit-credit-amount {
+    font-weight: bold;
+  }
+  
+  .debit-amount {
+    color: green;
+  }
+  
+  .credit-amount {
+    color: red;
+  }
+  
