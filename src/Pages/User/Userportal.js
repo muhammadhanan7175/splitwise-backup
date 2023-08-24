@@ -212,6 +212,7 @@ function Userportal() {
             <TextField
               label="Description"
               variant="outlined"
+              required
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -219,6 +220,7 @@ function Userportal() {
               label="Price"
               variant="outlined"
               type="number"
+              required
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
@@ -226,6 +228,7 @@ function Userportal() {
               label="Date"
               variant="outlined"
               type="date"
+              required
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
@@ -262,6 +265,7 @@ function Userportal() {
                 <TextField
                   label="Add User Email"
                   variant="outlined"
+                  required
                   value={newUserEmail}
                   onChange={(e) => setNewUserEmail(e.target.value)}
                 />

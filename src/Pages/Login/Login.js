@@ -7,7 +7,7 @@ import './Login.css';
 
 function Login() {
     const [emailList, setEmailList] = useState([]);
-    const direction = useNavigate();
+    const Navigate = useNavigate();
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
 
@@ -20,7 +20,8 @@ function Login() {
         await signOut(auth);
     };
 
-    const login = async () => {
+    const login = async (e) => {
+        e.preventDefault()
         if (!isEmailValid(loginEmail)) {
             alert("Improper email entered");
             return;
@@ -37,13 +38,13 @@ function Login() {
         }
         
         console.log(emailList);
-        direction("/Userportal");
+        Navigate("/Userportal");
     };
 
     return (
         <>
             <div className="formContainer">
-                <form className="form">
+                <form className="form" autoComplete="off" onSubmit={login}>
                     <input
                         type="email"
                         placeholder="E-mail Address"
@@ -58,10 +59,12 @@ function Login() {
                         placeholder="Password"
                         id="password"
                         name="password"
+                        required
                         value={loginPassword}
+                        // error ={!loginPassword}
                         onChange={(event) => setLoginPassword(event.target.value)}
                     />
-                    <button type="button" onClick={login}>
+                    <button type="submit">
                         Login
                     </button>
                 </form>

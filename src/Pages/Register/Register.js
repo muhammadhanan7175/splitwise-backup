@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../Firebase/Firebase-config";
 
 function Register() {
-    const direction = useNavigate();
+    const Navigate = useNavigate();
     const [registerPassword, setRegisterPassword] = useState("");
     const [email, setEmail] = useState("");
 
@@ -15,7 +15,8 @@ function Register() {
         return emailPattern.test(email);
     };
 
-    const register = async () => {
+    const register = async (e) => {
+        e.preventDefault()
         if (!isEmailValid(email)) {
             alert("Improper email entered");
             return;
@@ -32,23 +33,23 @@ function Register() {
                 email: email
             });
 
-            console.log('User registered:', email);
         } catch (error) {
             console.log('Error during registration:', error);
         }
 
-        direction("/Userportal");
+        Navigate("/Userportal");
     }
 
     return (
         <>
             <div className="formContainer">
-                <form className="form">
+                <form className="form" autoComplete="off" onSubmit={register}>
                     <input
                         type="email"
                         placeholder="E-mail Address"
                         id="email"
                         name="email"
+                        required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -57,10 +58,11 @@ function Register() {
                         placeholder="Password"
                         id="password"
                         name="password"
+                        required
                         value={registerPassword}
                         onChange={(event) => setRegisterPassword(event.target.value)}
                     />
-                    <button type="button" onClick={register}>
+                    <button type="submit" >
                         Register
                     </button>
                 </form>
@@ -70,14 +72,3 @@ function Register() {
 }
 
 export default Register;
-
-
-
-
-// <input type="email" placeholder="E-mail Address" id="email" name="email"
-// value={email} onChange={(e) => setEmail(e.target.value)}/>
-// <input type="password" placeholder="Password" id="password" name="password"
-// value={pass} onChange={(e) => setPass(e.target.value)}/>
-// <button type="submit"  onClick={""}>Login</button>
-// <button type="submit"  onClick={""}>Register</button>
-
