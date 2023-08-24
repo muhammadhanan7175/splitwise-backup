@@ -1,6 +1,8 @@
 import React from "react";
+
 import mobile3 from "../../assets/svgs/Mobile3.png";
 import mobile4 from "../../assets/svgs/Mobile4.png";
+
 import "./SecondUtility.css";
 function Section3() {
   return (

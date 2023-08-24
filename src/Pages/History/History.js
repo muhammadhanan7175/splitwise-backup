@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { db, auth } from "../../Firebase/Firebase-config";
 import DebitCreditSection from "../../components/DebitCredit/DebirCreditSection";
 import RectangularCard from "../../components/Card/Card";
-import { db, auth } from "../../Firebase/Firebase-config";
-import { useAuthState } from "react-firebase-hooks/auth";
 import "./History.css";
 
 function History() {
   const [cardData, setCardData] = useState([]);
-  const [debitAmount, setDebitAmount] = useState(0); // Initialize with 0
-  const [creditAmount, setCreditAmount] = useState(0); // Initialize with 0
+  const [debitAmount, setDebitAmount] = useState(0);
+  const [creditAmount, setCreditAmount] = useState(0);
+
   const [user] = useAuthState(auth);
 
   useEffect(() => {
@@ -53,7 +54,6 @@ function History() {
                       (guest) => `you owe ${guest.userId} : ${guest.balance}`
                     );
 
-            // Update totalDebit and totalCredit
             if (debitCreditField === "Debit") {
               totalDebit += balance;
             } else {

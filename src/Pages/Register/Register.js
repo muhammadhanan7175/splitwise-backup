@@ -1,14 +1,15 @@
 import React from "react";
-import "./Register.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../Firebase/Firebase-config";
+import "./Register.css";
 
 function Register() {
-  const Navigate = useNavigate();
   const [registerPassword, setRegisterPassword] = useState("");
   const [email, setEmail] = useState("");
+
+  const Navigate = useNavigate();
 
   const isEmailValid = (email) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

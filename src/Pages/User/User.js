@@ -1,29 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addExpense,
-  updateToPay,
-  updatePaid,
-} from "../../Redux/ExpenseDetailSlice";
-import { db, auth } from "../../Firebase/Firebase-config";
-import "./User.css";
 import { useNavigate } from "react-router-dom";
-import { setCurrentUser } from "../../Redux/CurrentUserSlice";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { db, auth } from "../../Firebase/Firebase-config";
+import { setCurrentUser } from "../../Redux/CurrentUserSlice";
+import { addExpense,  updateToPay,  updatePaid,} from "../../Redux/ExpenseDetailSlice";
+import {Button,TextField,Dialog,DialogTitle,DialogContent, DialogActions,} from "@mui/material";
+
+import "./User.css";
 
 function Userportal() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
-  const expenseDetails = useSelector((state) => state.expenseDetails);
-  const currentUserEmail = user?.email;
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [description, setDescription] = useState("");
@@ -37,24 +26,16 @@ function Userportal() {
   const [amountToPay, setAmountToPay] = useState(0);
   const [showLoggerInput, setShowLoggerInput] = useState(false);
   const [split, setSplit] = useState(false);
-
-  const navigate = useNavigate();
-  const currentUser = useSelector((state) => state.currentUser.value);
-
-  useEffect(() => {
-    const loggedInUser = auth.user ? auth.user.currentEmail : "";
-
-    if (loggedInUser) {
-      setLoggerState({ ...loggedInUser, loggerEmail: currentUserEmail });
-      dispatch(setCurrentUser(loggedInUser));
-    }
-  }, []);
-
   const [loggerState, setLoggerState] = useState({
     loggerEmail: currentUserEmail,
     loggerToPay: 0,
     loggerPaid: 0,
   });
+
+  const currentUser = useSelector((state) => state.currentUser.value);
+  const expenseDetails = useSelector((state) => state.expenseDetails);
+
+  const currentUserEmail = user?.email;
 
   const handleAddExpense = (userId, toPay, paid) => {
     dispatch(addExpense({ userId, toPay, paid }));
@@ -74,21 +55,6 @@ function Userportal() {
       setNewUserEmail("");
     }
   };
-
-  const onSave = (e) => {
-    e.preventDefault();
-    setDescription("");
-    setPrice("");
-    setDate("");
-  };
-
-  useEffect(() => {
-    const shouldShowLoggerInput = expenseDetails.some(
-      (expense) =>
-        parseFloat(expense.toPay) !== 0 || parseFloat(expense.paid) !== 0
-    );
-    setShowLoggerInput(shouldShowLoggerInput);
-  }, [expenseDetails]);
 
   const handleSplitClick = (index) => {
     setSplit(true);
@@ -193,6 +159,23 @@ function Userportal() {
         });
     }
   };
+
+  useEffect(() => {
+    const shouldShowLoggerInput = expenseDetails.some(
+      (expense) =>
+        parseFloat(expense.toPay) !== 0 || parseFloat(expense.paid) !== 0
+    );
+    setShowLoggerInput(shouldShowLoggerInput);
+  }, [expenseDetails]);
+
+  useEffect(() => {
+    const loggedInUser = auth.user ? auth.user.currentEmail : "";
+
+    if (loggedInUser) {
+      setLoggerState({ ...loggedInUser, loggerEmail: currentUserEmail });
+      dispatch(setCurrentUser(loggedInUser));
+    }
+  }, []);
 
   return (
     <div>
@@ -317,9 +300,6 @@ function Userportal() {
             <div className="button-container">
               <Button variant="contained" color="primary" onClick={publishData}>
                 Submit
-              </Button>
-              <Button variant="contained" color="secondary" onClick={onSave}>
-                Save
               </Button>
             </div>
           </form>

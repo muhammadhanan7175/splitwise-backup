@@ -1,7 +1,10 @@
 import React from "react";
+
+import Button from "@mui/material/Button";
+
 import plane from "../../assets/svgs/plane.png";
 import "./Introduction.css";
-import Button from "@mui/material/Button";
+
 function Section1() {
   return (
     <>

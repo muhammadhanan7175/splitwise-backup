@@ -8,8 +8,9 @@ import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
 
 function Header() {
-
   const currentUser = useSelector((state) => state.counter);
+  const navigate = useNavigate();
+
   const handleSignOut = async () => {
     await signOut(auth)
       .then(() => {
@@ -20,10 +21,11 @@ function Header() {
       });
     navigate("/");
   };
-  const navigate = useNavigate();
+
   const travel = () => {
     navigate("/Login");
   };
+
   const teleport = () => {
     navigate("/Register");
   };
