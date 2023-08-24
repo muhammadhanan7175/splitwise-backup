@@ -1,7 +1,16 @@
-import React from 'react';
-import './Card.css'; // Import your CSS file for RectangularCard
+import React from "react";
+import "./Card.css";
 
-const RectangularCard = ({ date, description, price, topay, paid, debit, credit, additionalInfo }) => {
+const RectangularCard = ({
+  date,
+  description,
+  price,
+  topay,
+  paid,
+  debit,
+  credit,
+  additionalInfo,
+}) => {
   return (
     <div className="rectangular-card">
       <div className="card-field">Date: {date}</div>
@@ -21,7 +30,3 @@ const RectangularCard = ({ date, description, price, topay, paid, debit, credit,
 };
 
 export default RectangularCard;
-
-
-
-

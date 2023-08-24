@@ -44,7 +44,8 @@ function History() {
                 ? guestBalances
                     .filter((guest) => guest.balance < 0)
                     .map(
-                      (guest) => `${guest.userId} owes ${ Math.abs(guest.balance)}`
+                      (guest) =>
+                        `${guest.userId} owes ${Math.abs(guest.balance)}`
                     )
                 : guestBalances
                     .filter((guest) => guest.balance > 0)
@@ -65,12 +66,12 @@ function History() {
               price: `$${data.price}`,
               paid: data.adminDetails.loggerPaid,
               debit: debitCreditField === "Debit" ? balance.toString() : "0",
-              credit: debitCreditField === "Credit" ? (-balance).toString() : "0",
+              credit:
+                debitCreditField === "Credit" ? (-balance).toString() : "0",
               additionalInfo,
             };
           });
 
-        // Update debit and credit amounts in state
         setDebitAmount(totalDebit);
         setCreditAmount(totalCredit);
 
@@ -87,7 +88,10 @@ function History() {
     <>
       <div className="app">
         <h1>Financial Transactions</h1>
-        <DebitCreditSection  debitAmount={debitAmount} creditAmount={creditAmount}/>
+        <DebitCreditSection
+          debitAmount={debitAmount}
+          creditAmount={creditAmount}
+        />
         <div className="card-container">
           {cardData.map((card, index) => (
             <RectangularCard key={index} {...card} />
@@ -99,6 +103,3 @@ function History() {
 }
 
 export default History;
-
-
-

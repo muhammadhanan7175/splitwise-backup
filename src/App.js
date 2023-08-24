@@ -4,7 +4,7 @@ import Home from './Pages/Home/Home';
 import Login from "./Pages/Login/Login"
 import Footer from './components/Footer/Footer';
 import { Route,Routes } from 'react-router-dom';
-import Userportal from './Pages/User/Userportal';
+import Userportal from './Pages/User/User';
 import Register from './Pages/Register/Register';
 import History from './Pages/History/History';
 function App() {

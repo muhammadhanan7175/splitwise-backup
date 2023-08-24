@@ -6,7 +6,7 @@ import {
   updatePaid,
 } from "../../Redux/ExpenseDetailSlice";
 import { db, auth } from "../../Firebase/Firebase-config";
-import "./Userportal.css";
+import "./User.css";
 import { useNavigate } from "react-router-dom";
 import { setCurrentUser } from "../../Redux/CurrentUserSlice";
 import {
@@ -24,7 +24,6 @@ function Userportal() {
   const [user] = useAuthState(auth);
   const expenseDetails = useSelector((state) => state.expenseDetails);
   const currentUserEmail = user?.email;
-  
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [description, setDescription] = useState("");

@@ -1,47 +1,44 @@
-
-.container{
-    display: flex;
-    flex-direction: row;
-    background-image: url(../../assets/svgs/FinalBackground.png);
-    /* opacity: 0.3; */
+.container {
+  display: flex;
+  flex-direction: row;
+  background-image: url(../../assets/svgs/FinalBackground.png);
+  /* opacity: 0.3; */
 }
-.text-section{
-    display: flex;
-    flex-direction: column;
-    padding-left: 8%;
-    padding-top: 7%;
-   
+.text-section {
+  display: flex;
+  flex-direction: column;
+  padding-left: 8%;
+  padding-top: 7%;
 }
-.image-section img{
-    width: 90%;
-    height: 100%;
+.image-section img {
+  width: 90%;
+  height: 100%;
 }
-.text{
- display: flex;
- flex-direction: row;
- width:57% ;
- text-align:left;
+.text {
+  display: flex;
+  flex-direction: row;
+  width: 57%;
+  text-align: left;
 }
-.text h3{
-    font-size:40px;
-    width: 94%;
-
+.text h3 {
+  font-size: 40px;
+  width: 94%;
 }
-.text2{
-    display: flex;
-    flex-direction: row;
+.text2 {
+  display: flex;
+  flex-direction: row;
 }
 
-.text2 p{
-    width: 47%;
-    text-align: left;
-    margin-left: 2%;
-    margin-bottom: 5%;
-    color: black;
+.text2 p {
+  width: 47%;
+  text-align: left;
+  margin-left: 2%;
+  margin-bottom: 5%;
+  color: black;
 }
-.btn button{
-    width :25%;
-    height: 130%;
-    margin-left: 1%;
-    margin-top: 0%;
+.btn button {
+  width: 25%;
+  height: 130%;
+  margin-left: 1%;
+  margin-top: 0%;
 }

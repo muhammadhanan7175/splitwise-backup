@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import expenseDetailsReducer from './ExpenseDetailSlice';
-import currentUserReducer from "../Redux/CurrentUserSlice"
-export  const store = configureStore({
+import { configureStore } from "@reduxjs/toolkit";
+import expenseDetailsReducer from "./ExpenseDetailSlice";
+import currentUserReducer from "../Redux/CurrentUserSlice";
+export const store = configureStore({
   reducer: {
     expenseDetails: expenseDetailsReducer,
-    currentUser : currentUserReducer
+    currentUser: currentUserReducer,
   },
-})
-export default store
+});
+export default store;

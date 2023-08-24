@@ -1,17 +1,16 @@
-.containere{
-    display: flex;
-    justify-content:space-between;
-    flex-direction: row;
-    background-image: none;
+.containere {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background-image: none;
 }
-.button-arrangement{
-margin-top: 2%;
-margin-right: 3%;
-justify-content: space-around;
+.button-arrangement {
+  margin-top: 2%;
+  margin-right: 3%;
+  justify-content: space-around;
 }
-.container img{
-    width: 13%;
-    margin-left: 3%;
-    margin-top: 0%;
-    
+.container img {
+  width: 13%;
+  margin-left: 3%;
+  margin-top: 0%;
 }
