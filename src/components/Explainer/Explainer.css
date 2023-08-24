@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     background-color: blueviolet;
-    background-image: url(../assets/svgs/FinalBackground.png);
+    background-image: url(../../assets/svgs/FinalBackground.png);
 }
 .texts{
     display: flex;

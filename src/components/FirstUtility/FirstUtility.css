@@ -1,22 +1,22 @@
-.container{
+.section{
     display: flex;
     flex-direction: row;
  
 }
-.demo-third{
+.demo-first{
 display: flex;
 flex-direction: column;
-background-color: orangered;
-background-image: url(../assets/svgs/FinalBackground.png);
+background-color: grey;
+background-image: url(../../assets/svgs/FinalBackground.png);
 width: 50%;
 justify-content: center;
 align-items: center;
 }
-.demo-fourth{
+.demo-second{
 display: flex;
 flex-direction: column;
-background-color: grey;
-background-image: url(../assets/svgs/FinalBackground.png);
+background-color: slateblue;
+background-image: url(../../assets/svgs/FinalBackground.png);
 width: 50%;
 justify-content: center;
 align-items: center;
@@ -39,10 +39,4 @@ p{
 h2{
     font-size:xx-large;
     color: white;
-}
-.img1 img{
-    width: 100%;
-}
-.img2 img{
-    width: 100%;
 }

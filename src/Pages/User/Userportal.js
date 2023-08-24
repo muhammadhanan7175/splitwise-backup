@@ -4,11 +4,11 @@ import {
   addExpense,
   updateToPay,
   updatePaid,
-} from "../Redux/ExpenseDetailSlice";
-import { db, auth } from "../components/Firebase-config";
+} from "../../Redux/ExpenseDetailSlice";
+import { db, auth } from "../../Firebase/Firebase-config";
 import "./Userportal.css";
 import { useNavigate } from "react-router-dom";
-import { setCurrentUser } from "../Redux/CurrentUserSlice";
+import { setCurrentUser } from "../../Redux/CurrentUserSlice";
 import {
   Button,
   TextField,

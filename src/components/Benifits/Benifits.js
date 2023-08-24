@@ -1,6 +1,6 @@
 import React from "react";
-import icon from "../assets/svgs/logo.png"
-import './Section5.css';
+import icon from "../../assets/svgs/logo.png"
+import './Benifits.css';
 function Section5(){
     return(
         <>

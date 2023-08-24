@@ -1,6 +1,6 @@
 import React from "react";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from "../components/Firebase-config";
+import { auth } from "../../Firebase/Firebase-config";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Login.css';
@@ -27,7 +27,7 @@ function Login() {
         }
 
         try {
-            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword).then((userCred) => {
+            await signInWithEmailAndPassword(auth, loginEmail, loginPassword).then((userCred) => {
                 console.log(userCred);
                 setEmailList([...emailList, loginEmail]);
             });
@@ -49,6 +49,7 @@ function Login() {
                         placeholder="E-mail Address"
                         id="email"
                         name="email"
+                        required
                         value={loginEmail}
                         onChange={(e) => setLoginEmail(e.target.value)}
                     />

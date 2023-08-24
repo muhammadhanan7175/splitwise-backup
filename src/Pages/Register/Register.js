@@ -3,7 +3,7 @@ import './Register.css';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../components/Firebase-config";
+import { auth, db } from "../../Firebase/Firebase-config";
 
 function Register() {
     const direction = useNavigate();
@@ -23,13 +23,18 @@ function Register() {
 
         try {
             const user = await createUserWithEmailAndPassword(auth, email, registerPassword);
-            const usersRef = db.collection("users").doc(email);
-            const res = await usersRef.set({
+            
+            // Create or access the "registeredUsers" collection
+            const registeredUsersRef = db.collection("registeredUsers");
+            
+            // Add the email as a document in the "registeredUsers" collection
+            await registeredUsersRef.doc(email).set({
                 email: email
             });
-            console.log('resss', res);
+
+            console.log('User registered:', email);
         } catch (error) {
-            console.log('errrr', error);
+            console.log('Error during registration:', error);
         }
 
         direction("/Userportal");
@@ -65,6 +70,7 @@ function Register() {
 }
 
 export default Register;
+
 
 
 

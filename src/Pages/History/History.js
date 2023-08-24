@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import DebitCreditSection from "../components/DebirCreditSection";
-import RectangularCard from "../components/Card";
-import { db, auth } from "../components/Firebase-config";
+import DebitCreditSection from "../../components/DebitCredit/DebirCreditSection";
+import RectangularCard from "../../components/Card/Card";
+import { db, auth } from "../../Firebase/Firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./History.css";
 

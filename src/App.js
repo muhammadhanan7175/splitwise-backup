@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from './components/Header';
-import Home from './Pages/Home';
-import Login from "./Pages/Login"
-import Footer from './components/Footer';
+import Header from './components/Header/Header';
+import Home from './Pages/Home/Home';
+import Login from "./Pages/Login/Login"
+import Footer from './components/Footer/Footer';
 import { Route,Routes } from 'react-router-dom';
-import Userportal from './Pages/Userportal';
-import Register from './Pages/Register';
-import History from './Pages/History';
+import Userportal from './Pages/User/Userportal';
+import Register from './Pages/Register/Register';
+import History from './Pages/History/History';
 function App() {
   return (
     <div >

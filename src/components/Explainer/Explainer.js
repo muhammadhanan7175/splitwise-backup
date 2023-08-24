@@ -1,7 +1,7 @@
 import React from "react";
-import mobile5 from "../assets/svgs/Mobile1.png"
+import mobile5 from "../../assets/svgs/Mobile1.png"
 import Button from '@mui/material/Button';
-import './Section4.css';
+import './Explainer.css';
 function Section4(){
     return(
         <>

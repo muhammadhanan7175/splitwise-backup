@@ -1,7 +1,7 @@
 import React from "react";
-import './Section2.css';
-import mobile1 from "../assets/svgs/Mobile1.png"
-import mobile2 from "../assets/svgs/Mobile2.png"
+import './FirstUtility.css';
+import mobile1 from "../../assets/svgs/Mobile1.png"
+import mobile2 from "../../assets/svgs/Mobile2.png"
 function Section2(){
     return(
         <>

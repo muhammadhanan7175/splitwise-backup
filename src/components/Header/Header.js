@@ -1,9 +1,9 @@
 import React from 'react';
 import './header.css';
 import Button from '@mui/material/Button';
-import logo from "../assets/svgs/logo.png"
+import logo from "../../assets/svgs/logo.png"
 import { useNavigate } from "react-router-dom";
-import { auth } from './Firebase-config';
+import { auth } from '../../Firebase/Firebase-config';
 import { signOut } from 'firebase/auth';
 import { useSelector } from "react-redux"
 
