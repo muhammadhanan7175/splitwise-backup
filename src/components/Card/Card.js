@@ -5,7 +5,6 @@ const RectangularCard = ({
   date,
   description,
   price,
-  topay,
   paid,
   debit,
   credit,

@@ -1,7 +1,7 @@
 import React from "react";
 import icon from "../../assets/svgs/logo.png";
 import "./Benifits.css";
-function Section5() {
+function Benifits() {
   return (
     <>
       <div className="contained">
@@ -126,4 +126,4 @@ function Section5() {
     </>
   );
 }
-export default Section5;
+export default Benifits;

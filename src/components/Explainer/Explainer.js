@@ -3,7 +3,7 @@ import mobile5 from "../../assets/svgs/Mobile1.png";
 import Button from "@mui/material/Button";
 
 import "./Explainer.css";
-function Section4() {
+function Explainer() {
   return (
     <>
       <div className="containers">
@@ -26,4 +26,4 @@ function Section4() {
     </>
   );
 }
-export default Section4;
+export default Explainer;

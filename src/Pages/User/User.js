@@ -2,14 +2,27 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
+
 import { db, auth } from "../../Firebase/Firebase-config";
 import { setCurrentUser } from "../../Redux/CurrentUserSlice";
-import { addExpense,  updateToPay,  updatePaid,} from "../../Redux/ExpenseDetailSlice";
-import {Button,TextField,Dialog,DialogTitle,DialogContent, DialogActions,} from "@mui/material";
+import {
+  addExpense,
+  updateToPay,
+  updatePaid,
+} from "../../Redux/ExpenseDetailSlice";
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,Stack
+} from "@mui/material";
 
 import "./User.css";
 
 function Userportal() {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
@@ -26,16 +39,18 @@ function Userportal() {
   const [amountToPay, setAmountToPay] = useState(0);
   const [showLoggerInput, setShowLoggerInput] = useState(false);
   const [split, setSplit] = useState(false);
+
+  const currentUser = useSelector((state) => state.currentUser.value);
+  const expenseDetails = useSelector((state) => state.expenseDetails);
+  
+  const currentUserEmail = user?.email;
+
+
   const [loggerState, setLoggerState] = useState({
     loggerEmail: currentUserEmail,
     loggerToPay: 0,
     loggerPaid: 0,
   });
-
-  const currentUser = useSelector((state) => state.currentUser.value);
-  const expenseDetails = useSelector((state) => state.expenseDetails);
-
-  const currentUserEmail = user?.email;
 
   const handleAddExpense = (userId, toPay, paid) => {
     dispatch(addExpense({ userId, toPay, paid }));
@@ -176,7 +191,6 @@ function Userportal() {
       dispatch(setCurrentUser(loggedInUser));
     }
   }, []);
-
   return (
     <div>
       <div className="buttoncontainer">
@@ -191,6 +205,7 @@ function Userportal() {
       {isFormVisible && (
         <div className="form-container">
           <form>
+            <Stack direction="column" spacing={2}>
             <TextField
               label="Description"
               variant="outlined"
@@ -214,6 +229,7 @@ function Userportal() {
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
+            </Stack>
             <div className="user-email-container">
               {expenseDetails.map((expense, index) => (
                 <div className="add-user-email" key={index}>

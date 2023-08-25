@@ -3,7 +3,7 @@ import mobile1 from "../../assets/svgs/Mobile1.png";
 import mobile2 from "../../assets/svgs/Mobile2.png";
 
 import "./FirstUtility.css";
-function Section2() {
+function FirstUtility() {
   return (
     <>
       <div className="section">
@@ -32,4 +32,4 @@ function Section2() {
     </>
   );
 }
-export default Section2;
+export default FirstUtility;

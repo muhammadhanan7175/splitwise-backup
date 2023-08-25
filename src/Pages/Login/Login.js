@@ -17,10 +17,6 @@ function Login() {
     return emailPattern.test(email);
   };
 
-  const logout = async () => {
-    await signOut(auth);
-  };
-
   const login = async (e) => {
     e.preventDefault();
     if (!isEmailValid(loginEmail)) {

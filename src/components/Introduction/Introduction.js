@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import plane from "../../assets/svgs/plane.png";
 import "./Introduction.css";
 
-function Section1() {
+function Introduction() {
   return (
     <>
       <div className="container">
@@ -35,4 +35,4 @@ function Section1() {
     </>
   );
 }
-export default Section1;
+export default Introduction;
